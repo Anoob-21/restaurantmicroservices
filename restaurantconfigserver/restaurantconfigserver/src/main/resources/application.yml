@@ -1,0 +1,25 @@
+server:
+  port: 8111
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Anoob-21/restaurantproperties.git
+          skip-ssl-validation: true
+          searchPaths: restaurant*
+          username: #do not need for public repo
+          password: #do not need for public repo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      expose: "*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

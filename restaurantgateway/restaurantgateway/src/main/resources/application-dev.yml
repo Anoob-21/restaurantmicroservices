@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: restaurant-order
+          uri: lb://RESTAURANT-ORDER
+          predicates:
+            - Path=/restaurantorder/**
+          filters:
+            - name: Hystrix
+              args:
+                name: restaurant-order
+                fallbackUri: forward:/fallback/orderFallback
+            - name: OrderPreFilter
